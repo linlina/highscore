@@ -1,5 +1,5 @@
 
-highscore <- function(x, model, lambda = 0, centered = TRUE, tol = 1e-6, maxit = 1000){
+highscore <- function(x, model, lambda = 0, centered = TRUE, tol = 1e-6, maxit = 1000, ...){
   n <- nrow(x)
   p <- ncol(x)
 
@@ -100,6 +100,7 @@ highscore <- function(x, model, lambda = 0, centered = TRUE, tol = 1e-6, maxit =
       e <- rep(0, p)
       temp <- .C("Score_cond2", p = as.integer(p), Xbar = as.double(xbar), S = as.double(S), SS = as.double(SS), SSS = as.double(SSS), SD = as.double(SD), SDQ = as.double(SDQ), ST = as.double(ST), lambda = as.double(lambda), A = as.double(A), B = as.double(B), d = as.double(d), e = as.double(e), tol = as.double(tol), maxit = as.integer(maxit), package = "highscore")
       temp$A <- matrix(temp$A, p, p)
+      temp$B <- matrix(temp$B, p, p)
       output <- list(A = temp$A, B= temp$B, d= temp$d, e = temp$e, lambda = orig_lambda, iter = temp$maxit, tol = tol)
     }
   } else {
