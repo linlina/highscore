@@ -1,3 +1,6 @@
+#THESE ARE SMALLER VERSIONS OF THE SIMULATIONS RUN IN LIN, DRTON, SHOJAIE (2015)
+#YOU WILL NEED THE FOLLOWING PACKAGES FROM CRAN: igraph, mvtnorm, tmvtnorm
+
 library(igraph)
 library(mvtnorm)
 library(tmvtnorm)
