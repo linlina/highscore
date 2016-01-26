@@ -36,10 +36,10 @@ highscore <- function(x, model, lambda = 0, centered = TRUE, tol = 1e-6, maxit =
     }
     temp$K <- matrix(temp$K, p, p)
     if (centered){
-      output <- structure(K = temp$K, lambda = orig_lambda, iter = temp$maxit, tol = tol)
+      output <- list(K = temp$K, lambda = orig_lambda, iter = temp$maxit, tol = tol)
     } else {
       mu <- colMeans(x)
-      output <- structure(K = temp$K, mu = mu, lambda = orig_lambda, iter = temp$maxit, tol = tol)
+      output <- list(K = temp$K, mu = mu, lambda = orig_lambda, iter = temp$maxit, tol = tol)
     }
   } else if (model == "nonnegative") {
     K <- diag(1, p)
@@ -51,7 +51,7 @@ highscore <- function(x, model, lambda = 0, centered = TRUE, tol = 1e-6, maxit =
       }
       temp <- .C("ScoreNN1", p = as.integer(p), S1 = as.double(S1), S2 = as.double(S2), lambda = as.double(lambda), K = as.double(K), tol = as.double(tol), maxit = as.integer(maxit), package = "highscore")
       temp$K <- matrix(temp$K, p, p)
-      output <- structure(K = temp$K, lambda = orig_lambda, iter = temp$maxit, tol = tol)
+      output <- list(K = temp$K, lambda = orig_lambda, iter = temp$maxit, tol = tol)
     } else {
       S1 <- crossprod(x, x)/n
       S2 <- crossprod(x^2, x)/n
@@ -63,7 +63,7 @@ highscore <- function(x, model, lambda = 0, centered = TRUE, tol = 1e-6, maxit =
       b <- rep(0, p)
       temp <- .C("ScoreNN2", p = as.integer(p), Xbar = as.double(xbar), S1 = as.double(S1), S2 = as.double(S2), S3 = as.double(S3), lambda = as.double(lambda), K = as.double(K), b = as.double(b), tol = as.double(tol), maxit = as.integer(maxit), package = "highscore")
       temp$K <- matrix(temp$K, p, p)
-      output <- structure(K = temp$K, mu = mu, lambda = orig_lambda, iter = temp$maxit, tol = tol)
+      output <- list(K = temp$K, mu = mu, lambda = orig_lambda, iter = temp$maxit, tol = tol)
     }
   } else if (model == "conditional"){
     if (centered){
@@ -81,7 +81,7 @@ highscore <- function(x, model, lambda = 0, centered = TRUE, tol = 1e-6, maxit =
       e <- rep(0, p)
       temp <- .C("Score_cond", p = as.integer(p), Xbar = as.double(xbar), S = as.double(S), SS = as.double(SS), SD = as.double(SD), SDQ = as.double(SDQ), ST = as.double(ST), lambda = as.double(lambda), A = as.double(A), d = as.double(d), e = as.double(e), tol = as.double(tol), maxit = as.integer(maxit), package = "highscore")
       temp$A <- matrix(temp$A, p, p)
-      output <- structure(A = temp$A, d = temp$d, e = temp$e, lambda = orig_lambda, iter = temp$maxit, tol = tol)
+      output <- list(A = temp$A, d = temp$d, e = temp$e, lambda = orig_lambda, iter = temp$maxit, tol = tol)
     } else {
       S <- crossprod(x, x)/n
       SS <- crossprod(x^2, x)/n
@@ -100,7 +100,7 @@ highscore <- function(x, model, lambda = 0, centered = TRUE, tol = 1e-6, maxit =
       e <- rep(0, p)
       temp <- .C("Score_cond2", p = as.integer(p), Xbar = as.double(xbar), S = as.double(S), SS = as.double(SS), SSS = as.double(SSS), SD = as.double(SD), SDQ = as.double(SDQ), ST = as.double(ST), lambda = as.double(lambda), A = as.double(A), B = as.double(B), d = as.double(d), e = as.double(e), tol = as.double(tol), maxit = as.integer(maxit), package = "highscore")
       temp$A <- matrix(temp$A, p, p)
-      output <- structure(A = temp$A, B= temp$B, d= temp$d, e = temp$e, lambda = orig_lambda, iter = temp$maxit, tol = tol)
+      output <- list(A = temp$A, B= temp$B, d= temp$d, e = temp$e, lambda = orig_lambda, iter = temp$maxit, tol = tol)
     }
   } else {
     cat("Something went wrong, oh no", "\n")
