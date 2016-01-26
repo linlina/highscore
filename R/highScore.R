@@ -63,7 +63,7 @@ highscore <- function(x, model, lambda = 0, centered = TRUE, tol = 1e-6, maxit =
       b <- rep(0, p)
       temp <- .C("ScoreNN2", p = as.integer(p), Xbar = as.double(xbar), S1 = as.double(S1), S2 = as.double(S2), S3 = as.double(S3), lambda = as.double(lambda), K = as.double(K), b = as.double(b), tol = as.double(tol), maxit = as.integer(maxit), package = "highscore")
       temp$K <- matrix(temp$K, p, p)
-      output <- list(K = temp$K, mu = mu, lambda = orig_lambda, iter = temp$maxit, tol = tol)
+      output <- list(K = temp$K, b = temp$b, lambda = orig_lambda, iter = temp$maxit, tol = tol)
     }
   } else if (model == "conditional"){
     if (centered){
