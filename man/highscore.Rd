@@ -6,11 +6,11 @@ highscore(x, model, lambda = 0, centered = TRUE, tol = 1e-6, maxit = 1000, ...)
 }
 \arguments{
   \item{x}{The n x p data matrix, that is, n observations and p variables}
-  \item{model}{Either "gaussian", "nonnegative" (for non-negative Gaussians: K = K, b = K^-1* mu), "conditional" (for conditional Gaussian: A = B(2), B = B[off-diagonal], d = B[diagonal], e = b); see paper for notational references}
+  \item{model}{Either "gaussian", "nonnegative" (for non-negative Gaussians: K = K, b = K^-1 mu), "conditional" (for conditional Gaussian: A = B(2), B = B[off-diagonal], d = B[diagonal], e = b); see paper for notational references}
 
   \item{lambda}{The l1 regularization parameter}
 
-  \item{centered}{Either TRUE or FALSE: if TRUE then (1) for Gaussian and non-negative Gaussian models, we estimate the shift parameter b = K^-1*mu and (2) for conditional Gaussian models, we estimate the matrix B for x_ix_j cross terms}
+  \item{centered}{Either TRUE or FALSE: if TRUE then (1) for Gaussian and non-negative Gaussian models, we estimate the shift parameter b = K^-1mu and (2) for conditional Gaussian models, we estimate the matrix B for x_ix_j cross terms}
 
   \item{tol}{Convergence threshold}
 
