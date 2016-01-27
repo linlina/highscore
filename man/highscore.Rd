@@ -21,6 +21,9 @@ highscore(x, model, lambda = 0, centered = TRUE, tol = 1e-6, maxit = 1000, ...)
 \description{
 Implements the regularized score matching method from Lin, Drton and Shojaie (2015) http://arxiv.org/abs/1507.00433
 }
+\value{
+A list containing parameter estimates, number of iterations run, and details of the run (regularization parameter and convergence threshold). The function will return a 0 if an error has occured. 
+}
 \examples{
 library(mvtnorm)
 n <- 500
