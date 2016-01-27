@@ -33,7 +33,7 @@ test1 <- highscore(x, "gaussian", lambda = 0.5, centered = TRUE, tol = 1e-06, ma
 cat("non-negative Gaussian demo \n")
 gr <- erdos.renyi.game(side^2, 0.1)
 Adj <- as.matrix(get.adjacency(gr))
-Cor <- matrix(0, p, p)
+iCor <- matrix(0, p, p)
 iCor[which(Adj > 0)] <- runif(length(which(Adj > 0)), 0.5, 1)
 signs <- sample(c(-1, 1), length(which(Adj > 0)), replace = TRUE)
 for (i in 1:p){
@@ -49,7 +49,7 @@ Prec[which(abs(Prec) < 1e-05)] <- 0
 n <- 1000
 set.seed(1)
 x <- rtmvnorm(n, mean = rep(0, nrow(Sigma)), sigma = Sigma, lower = rep(0, nrow(Sigma)), upper = rep(Inf, nrow(Sigma)), algorithm = "gibbs", burn.in.samples = 100, thinning = 10)
-test2 <- highscore(x, "nonnegative", lambda = 0.5, centered = TRUE, tol = 1e-06, maxit = 1000)
+test2 <- highscore(x, "nonnegative", lambda = 0.5, centered = FALSE, tol = 1e-06, maxit = 1000)
 
 
 cat("conditional Gaussian demo \n")

@@ -59,7 +59,7 @@ highscore <- function(x, model, lambda = 0, centered = TRUE, tol = 1e-6, maxit =
       for (k in 1:p){
         S3[ , ((k-1)*p + 1):(k*p)] <- 1/n*crossprod(sweep(x, MARGIN = 1, x[,k]^2, `*`), x)
       }
-      xbar <- colSums(x)
+      xbar <- colMeans(x)
       b <- rep(0, p)
       temp <- .C("ScoreNN2", p = as.integer(p), Xbar = as.double(xbar), S1 = as.double(S1), S2 = as.double(S2), S3 = as.double(S3), lambda = as.double(lambda), K = as.double(K), b = as.double(b), tol = as.double(tol), maxit = as.integer(maxit), package = "highscore")
       temp$K <- matrix(temp$K, p, p)
