@@ -4,6 +4,7 @@
 *.swp
 *.Rproj
 .DS_Store
+*~
 
 ## Compiled
 *.o
