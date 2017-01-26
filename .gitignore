@@ -1,3 +1,11 @@
 .Rproj.user
 .Rhistory
 .RData
+*.swp
+*.Rproj
+.DS_Store
+
+## Compiled
+*.o
+*.so
+*.dll
