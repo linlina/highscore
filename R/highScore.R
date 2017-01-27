@@ -18,7 +18,7 @@ highscore <- function(x, model, lambda = 0, centered = TRUE, tol = 1e-6, maxit =
       }
     } else {
       if (n >= p) {
-        S <- cov(x)
+        S <- stats::cov(x)
       } else {
         stdx <- apply(x, 2, scale, scale = FALSE, center = TRUE)
         if (n >= p) {

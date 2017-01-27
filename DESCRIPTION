@@ -1,11 +1,11 @@
 Package: highscore
 Type: Package
-Title: Regularized score matching for graphical model selection
+Title: Regularized Score Matching for Graphical Model Selection
 Version: 0.1
-Date: 2016-01-25
+Date: 2017-01-25
 Author: Lina Lin <linlina@uw.edu>, Mathias Drton <md5@uw.edu>, Ali Shojaie <ashojaie@uw.edu>
 Maintainer: Lina Lin <linlina@uw.edu>
-Description: Implements regularized score matching (i.e. employs l1 regularization) as a means of graphical model estimation assuming underlying graph is sparse
+Description: Implements regularized score matching (i.e. employs l1 regularization) as a means of graphical model estimation assuming underlying graph is sparse.
 Suggests: igraph, mvtnorm, tmvtnorm
 License: What license is it under? I'm not sure.
 LazyData: TRUE
